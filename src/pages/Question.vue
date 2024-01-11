@@ -5,12 +5,14 @@ import { useRouter } from "vue-router";
 
 // const target = ref("");
 const code = String(Math.round(Math.random() * 100000)).padStart(5, "0");
+// @ts-ignore
 const peer = new Peer(__APP_ID__ + "-" + code);
 // const toast = useToast();
 const router = useRouter();
 
 peer.on("connection", (conn) => {
   conn.on("data", (data) => {
+    // @ts-ignore
     if (data.status === "connected") {
       conn.send({ status: "connected" });
       router.push("/game");

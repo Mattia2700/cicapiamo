@@ -9,11 +9,12 @@ const router = useRouter();
 const peer = ref(new Peer());
 
 function connectToQuestionDevice() {
+  // @ts-ignore
   const conn = peer.value.connect(__APP_ID__ + "-" + code.value);
   conn.on("open", () => {
     conn.send({ status: "connected" });
     conn.on("data", (data) => {
-      console.log(data);
+      // @ts-ignore
       if (data.status === "connected") {
         router.push("/game");
       }
