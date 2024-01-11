@@ -1,29 +1,37 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import Peer from "peerjs";
+// import { POSITION, useToast } from "vue-toastification";
+import { useRouter } from "vue-router";
 
-const target = ref("");
+// const target = ref("");
+const code = String(Math.round(Math.random() * 100000)).padStart(5, "0");
+const peer = new Peer(__APP_ID__ + "-" + code);
+// const toast = useToast();
+const router = useRouter();
 
-const peer = new Peer();
+peer.on("connection", (conn) => {
+  conn.on("data", (data) => {
+    if (data.status === "connected") {
+      conn.send({ status: "connected" });
+      router.push("/game");
+    }
+  });
+});
 
-function sendMessage() {
-  if (target.value && target.value.length == 36) {
-    const conn = peer.connect(target.value);
-    conn.on("open", () => {
-      conn.send("hi!");
-    });
-  }
-}
+// toast.info(data, {
+//   position: POSITION.BOTTOM_CENTER,
+//   closeOnClick: true,
+//   pauseOnFocusLoss: false,
+//   pauseOnHover: false,
+// });
 </script>
 
 <template>
   <div class="mt-4 justify-center">
     <span class="text-center">Step 2: Ora inserisci questo codice sul secondo dispositvo.</span>
     <div class="flex mt-4 items-center justify-center">
-      <span class="font-bold mr-1 p-2 rounded bg-green-600 text-xl" id="code">000000000</span>
+      <span class="font-bold mr-1 p-2 rounded bg-green-600 text-xl">{{ code }}</span>
     </div>
-    <input type="text" v-model="target" />
-    <button class="mt-3" @click="sendMessage">Manda</button>
   </div>
 </template>
 

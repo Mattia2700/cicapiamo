@@ -11,4 +11,7 @@ export default defineConfig({
     },
     extensions: [".js", ".json", ".jsx", ".mjs", ".ts", ".tsx", ".vue"],
   },
+  define: {
+    __APP_ID__: JSON.stringify("cicapiamo"),
+  }
 });

@@ -1,35 +1,39 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import Peer from "peerjs";
+import { useRouter } from "vue-router";
 
-const id = ref("");
-const msg = ref("");
+const code = ref("");
+const router = useRouter();
 
-const peer = new Peer();
-peer.on("open", (peerid) => {
-  id.value = peerid;
-  peer.on("connection", (conn) => {
+const peer = ref(new Peer());
+
+function connectToQuestionDevice() {
+  const conn = peer.value.connect(__APP_ID__ + "-" + code.value);
+  conn.on("open", () => {
+    conn.send({ status: "connected" });
     conn.on("data", (data) => {
-      msg.value = data as string;
+      console.log(data);
+      if (data.status === "connected") {
+        router.push("/game");
+      }
     });
   });
-});
+}
 </script>
 
 <template>
   <div class="mt-4 justify-center">
     <span class="text-center">Step 2: Ora devi inserire il codice che ti viene mostrato sul secondo dispositvo.</span>
     <div class="mt-4 items-center justify-center">
-      <span class="font-bold mr-1">Inserisci il codice a 9 cifre:</span>
-      <input type="number" id="code" placeholder="Codice" class="p-2 rounded text-black mt-3 mr-1" />
+      <span class="font-bold mr-1">Inserisci il codice a 5 cifre:</span>
+      <input type="number" placeholder="Codice" v-model="code" class="p-2 rounded bg-white text-black mt-3 mr-1" />
       <input
         type="button"
         value="Connettiti"
-        onclick="connectToQuestionDevice()"
+        @click="connectToQuestionDevice"
         class="p-2 mt-5 rounded bg-white text-black font-bold cursor-pointer uppercase"
       />
-      <p class="mt-3">{{ id }}</p>
-      <p class="mt-3">{{ msg }}</p>
     </div>
   </div>
 </template>
