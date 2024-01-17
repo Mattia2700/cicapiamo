@@ -14,8 +14,8 @@ function redirectToAnswer() {
 </script>
 
 <template>
-  <div class="mt-4 justify-center">
-    <span class="text-center">Step 1: Scegli se questo dispositivo sarà usato per rispondere o per fare le domande.</span>
+  <div class="mt-20 justify-center">
+    <p class="text-left font-montserrat font-normal leading-5 text-[16px]">Scegli se questo dispositivo sarà usato per <b>rispondere</b> o per <b>fare le domande</b></p>
     <div class="mt-4">
       <button @click="redirectToAnswer" class="p-2 rounded bg-white text-black font-bold mr-1 cursor-pointer uppercase">
         Rispondere

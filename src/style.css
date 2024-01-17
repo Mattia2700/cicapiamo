@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  .font-outline-6 {
+    position: absolute;
+    -webkit-text-stroke: 10px white;
+  }
+  @font-face {
+    font-family: "Montserrat";
+    src: url("@/assets/Montserrat-Black.ttf") format("truetype");
+    font-weight: 900;
+  }
+  @font-face {
+    font-family: "Montserrat";
+    src: url("@/assets/Montserrat-Regular.ttf") format("truetype");
+    font-weight: 400;
+  }
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -28,7 +45,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  /*display: flex;*/
   place-items: center;
   min-width: 320px;
   min-height: 100vh;

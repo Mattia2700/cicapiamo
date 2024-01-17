@@ -142,9 +142,12 @@ function wrong() {
         </button>
       </div>
     </div>
-    <span class="flex-1 text-sm uppercase font-bold flex flex-col items-center justify-center mt-3"
-      >Indovinate<span id="guessedCount" class="text-xl">{{ guessedCount }}</span></span
-    >
+    <span class="flex-1 text-sm uppercase font-bold flex flex-col items-center justify-center mt-3">
+      Indovinate
+      <span id="guessedCount" class="text-xl">
+        {{ guessedCount }}
+      </span>
+    </span>
   </div>
 </template>
 

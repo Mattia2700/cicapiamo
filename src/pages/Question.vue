@@ -101,9 +101,7 @@ function stopTimer(passo: boolean = false) {
   </div>
   <div v-else class="flex flex-col mt-4 justify-center items-center w-full">
     <span class="text-center">Step 3: Gioca!</span>
-    <button @click="startTimer" class="mt-4 p-2 font-bold bg-green-600 text-xl rounded uppercase" :disabled="running">
-      Parti
-    </button>
+    <button v-if="!running" @click="startTimer" class="mt-4 p-2 font-bold bg-green-600 text-xl rounded uppercase">Parti</button>
     <span class="mt-4 text-md font-bold uppercase opacity-40">La parola è</span>
     <div id="word" class="mt-3 p-4 rounded bg-green-600 text-xl font-bold w-fit uppercase">
       {{ displayedWord }}
