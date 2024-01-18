@@ -20,16 +20,16 @@ function redirectToAnswer() {
       <span class="font-semibold">rispondere</span> o per
       <span class="font-semibold">fare le domande</span>
     </p>
-    <div class="fixed bottom-14">
+    <div class="mt-[50%] mx-auto">
       <button @click="redirectToAnswer"
-        class="text-black text-base font-semibold bg-white uppercase sm:w-full md:w-[60%] px-24 py-4 shadow-sm rounded-2xl">
+        class="text-black text-base font-semibold font-montserrat bg-white uppercase w-full py-4 shadow-sm rounded-2xl">
         Rispondere
       </button>
       <div class="my-6"/>
       <button
         value="Fare Domande"
         @click="redirectToQuestion"
-        class="text-black text-base font-semibold bg-white uppercase sm:w-full md:w-[60%] px-20 py-4 shadow-sm rounded-2xl"
+        class="text-black text-base font-semibold font-montserrat bg-white uppercase w-full py-4 shadow-sm rounded-2xl"
       >
         Fare Domande
       </button>
