@@ -3,11 +3,9 @@ import StepRow from "@/components/StepRow.vue";
 import { RouterView } from "vue-router";
 import { computed, onMounted, ref } from "vue";
 
-const prova = ref("");
 const installPrompt = ref<Event | null>(null);
 const isInstalled = ref(false);
 const isPWA = computed(() => {
-  console.log(window.matchMedia("(display-mode: standalone)").matches);
   return window.matchMedia("(display-mode: standalone)").matches;
 });
 
@@ -19,7 +17,6 @@ onMounted(() => {
   window.addEventListener("appinstalled", () => {
     isInstalled.value = true;
   });
-  console.log(isInstalled.value);
 });
 
 function openApp() {
