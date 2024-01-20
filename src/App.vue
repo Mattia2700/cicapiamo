@@ -3,11 +3,12 @@ import StepRow from "@/components/StepRow.vue";
 import { RouterView } from "vue-router";
 import { computed, onMounted, ref } from "vue";
 
+const prova = ref("");
 const installPrompt = ref<Event | null>(null);
 const isInstalled = computed(async () => {
   // @ts-ignore
   await navigator.getInstalledRelatedApps().then((apps) => {
-    console.log(apps);
+    prova.value = apps;
     return apps.length > 0;
   });
 });
@@ -25,7 +26,7 @@ onMounted(() => {
 });
 
 function openApp() {
-  window.open("http://localhost:5173/cicapiamo/", "_blank");
+  window.open("http://mattia2700.github.io/cicapiamo/", "_blank");
 }
 
 async function install() {
@@ -48,12 +49,13 @@ async function install() {
       <div v-else>
         <button
           @click="install"
-          class="mt-8 text-black text-base font-semibold font-montserrat bg-white uppercase w-full py-4 shadow-sm rounded-2xl">
+          class="mt-8 mb-3 text-black text-base font-semibold font-montserrat bg-white uppercase w-full py-4 shadow-sm rounded-2xl">
           Installa la applicazione per giocare
         </button>
+        <p class="text-center" >{{ prova }}</p>
         <button
           @click="openApp"
-          class="mt-8 text-black text-base font-semibold font-montserrat bg-white uppercase w-full py-4 shadow-sm rounded-2xl">
+          class="mt-3 text-black text-base font-semibold font-montserrat bg-white uppercase w-full py-4 shadow-sm rounded-2xl">
           Apri la applicazione
         </button>
       </div>
