@@ -8,7 +8,9 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "ionic:build": "npm run build",
-    "ionic:serve": "vite dev --host"
+    "ionic:serve": "vite dev --host",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@capacitor/android": "5.6.0",
@@ -27,6 +29,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.2",
     "autoprefixer": "^10.4.16",
+    "gh-pages": "^6.1.1",
     "postcss": "^8.4.33",
     "prettier": "^3.1.1",
     "tailwindcss": "^3.4.1",
