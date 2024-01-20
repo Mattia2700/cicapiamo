@@ -26,7 +26,7 @@ onMounted(() => {
 });
 
 function openApp() {
-  window.open("http://mattia2700.github.io/cicapiamo/", "_blank");
+  window.open("https://mattia2700.github.io/cicapiamo/", "_blank");
 }
 
 async function install() {
