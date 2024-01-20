@@ -46,16 +46,16 @@ async function install() {
       </div>
       <div v-else>
         <button
-          v-if="!isInstalled"
-          @click="install"
-          class="mt-8 mb-3 text-black text-base font-semibold font-montserrat bg-white uppercase w-full py-4 shadow-sm rounded-2xl">
-          Installa l'applicazione
-        </button>
-        <button
-          v-else-if="installing"
+          v-if="installing"
           disabled
           class="mt-8 opacity-50 text-black text-base font-semibold font-montserrat bg-white uppercase w-full py-4 shadow-sm rounded-2xl">
           Attendi...
+        </button>
+        <button
+          v-else-if="!isInstalled"
+          @click="install"
+          class="mt-8 mb-3 text-black text-base font-semibold font-montserrat bg-white uppercase w-full py-4 shadow-sm rounded-2xl">
+          Installa l'applicazione
         </button>
         <button
           v-else
