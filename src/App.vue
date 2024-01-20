@@ -4,7 +4,7 @@ import { RouterView } from "vue-router";
 </script>
 <template>
   <RouterView v-slot="{ Component }">
-    <div class="mt-[5em] p-1 px-[1rem] text-white max-w-lg m-auto flex flex-col">
+    <div class="mt-[2em] p-1 px-[1rem] text-white max-w-lg m-auto flex flex-col">
       <img class="flex" src="@/assets/it-title.svg" alt="Ci Capiamo" />
       <StepRow />
       <Component :is="Component" />
