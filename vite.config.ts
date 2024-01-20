@@ -15,6 +15,12 @@ export default defineConfig({
         short_name: "Ci Capiamo?",
         description: "Ci Capiamo? - A game to play with your friends",
         theme_color: "#000000",
+        related_applications: [
+          {
+            platform: "webapp",
+            url: "http://localhost:5173/cicapiamo/manifest.webmanifest"
+          }
+        ],
         icons: [
           {
             src: '/cicapiamo/pwa-192x192.png',
