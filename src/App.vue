@@ -5,13 +5,7 @@ import { computed, onMounted, ref } from "vue";
 
 const prova = ref("");
 const installPrompt = ref<Event | null>(null);
-const isInstalled = computed(async () => {
-  // @ts-ignore
-  await navigator.getInstalledRelatedApps().then((apps) => {
-    prova.value = apps;
-    return apps.length > 0;
-  });
-});
+const isInstalled = ref(false);
 const isPWA = computed(() => {
   console.log(window.matchMedia("(display-mode: standalone)").matches);
   return window.matchMedia("(display-mode: standalone)").matches;
@@ -21,6 +15,9 @@ onMounted(() => {
   window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     installPrompt.value = e;
+  });
+  window.addEventListener("appinstalled", () => {
+    isInstalled.value = true;
   });
   console.log(isInstalled.value);
 });
@@ -48,12 +45,13 @@ async function install() {
       </div>
       <div v-else>
         <button
+          v-if="!isInstalled"
           @click="install"
           class="mt-8 mb-3 text-black text-base font-semibold font-montserrat bg-white uppercase w-full py-4 shadow-sm rounded-2xl">
           Installa la applicazione per giocare
         </button>
-        <p class="text-center" >{{ prova }}</p>
         <button
+          v-else
           @click="openApp"
           class="mt-3 text-black text-base font-semibold font-montserrat bg-white uppercase w-full py-4 shadow-sm rounded-2xl">
           Apri la applicazione
