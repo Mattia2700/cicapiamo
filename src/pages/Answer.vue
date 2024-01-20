@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import Peer, { DataConnection } from "peerjs";
 import { POSITION, useToast } from "vue-toastification";
-import { ToastID } from "vue-toastification/dist/types/types";
+import type { ToastID } from "vue-toastification/dist/types/types";
 
 const questionDevice = ref("");
 const pause = ref(false);

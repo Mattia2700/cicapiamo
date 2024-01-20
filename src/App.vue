@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import StepRow from "@/components/StepRow.vue";
-</script>
 import { RouterView } from "vue-router";
+</script>
 <template>
   <RouterView v-slot="{ Component }">
     <div class="mt-[5em] p-1 px-[1rem] text-white max-w-lg m-auto flex flex-col">
