@@ -12,7 +12,7 @@ export default defineConfig({
       includeAssets: ['/cicapiamo/vite.svg', '/cicapiamo/pwa-192x192.png', '/cicapiamo/pwa-512x512.png'],
       manifest: {
         name: "Ci Capiamo?",
-        short_name: "CiCapiamo",
+        short_name: "Ci Capiamo?",
         description: "Ci Capiamo? - A game to play with your friends",
         theme_color: "#000000",
         icons: [
