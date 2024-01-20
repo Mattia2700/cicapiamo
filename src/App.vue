@@ -15,7 +15,6 @@ onMounted(() => {
   window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     installPrompt.value = e;
-    installing.value = true;
   });
   window.addEventListener("appinstalled", () => {
     isInstalled.value = true;
@@ -31,6 +30,7 @@ async function install() {
   if (installPrompt.value) {
     // @ts-ignore
     const result = await installPrompt.value.prompt();
+    installing.value = true;
     console.log(result);
   }
 }
