@@ -8,14 +8,18 @@ const isInstalled = ref(false);
 const isPWA = computed(() => {
   return window.matchMedia("(display-mode: standalone)").matches;
 });
+const installing = ref(false);
+
 
 onMounted(() => {
   window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     installPrompt.value = e;
+    installing.value = true;
   });
   window.addEventListener("appinstalled", () => {
     isInstalled.value = true;
+    installing.value = false;
   });
 });
 
@@ -45,13 +49,19 @@ async function install() {
           v-if="!isInstalled"
           @click="install"
           class="mt-8 mb-3 text-black text-base font-semibold font-montserrat bg-white uppercase w-full py-4 shadow-sm rounded-2xl">
-          Installa la applicazione per giocare
+          Installa l'applicazione
+        </button>
+        <button
+          v-else-if="installing"
+          disabled
+          class="mt-8 opacity-50 text-black text-base font-semibold font-montserrat bg-white uppercase w-full py-4 shadow-sm rounded-2xl">
+          Attendi...
         </button>
         <button
           v-else
           @click="openApp"
-          class="mt-3 text-black text-base font-semibold font-montserrat bg-white uppercase w-full py-4 shadow-sm rounded-2xl">
-          Apri la applicazione
+          class="mt-8 text-black text-base font-semibold font-montserrat bg-white uppercase w-full py-4 shadow-sm rounded-2xl">
+          Apri l'applicazione
         </button>
       </div>
 
