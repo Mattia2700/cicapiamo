@@ -3,6 +3,9 @@ import { ref } from "vue";
 import Peer, { DataConnection } from "peerjs";
 import { POSITION, useToast } from "vue-toastification";
 import type { ToastID } from "vue-toastification/dist/types/types";
+import Text from "@/components/Text.vue";
+import Bottom from "@/components/bottom/Bottom.vue";
+import BottomButton from "@/components/bottom/BottomButton.vue";
 
 const questionDevice = ref("");
 const pause = ref(false);
@@ -100,18 +103,20 @@ function wrong() {
 </script>
 
 <template>
-  <div v-if="!isConnected" class="mt-4 justify-center">
-    <span class="text-center">Step 2: Ora devi inserire il codice che ti viene mostrato sul secondo dispositvo.</span>
-    <div class="mt-4 items-center justify-center">
-      <span class="ml-3 font-bold mr-3">Inserisci il codice a 5 cifre:</span>
-      <input type="number" placeholder="Codice" v-model="questionDevice" class="p-2 rounded bg-white text-black mt-3 mr-1" />
-      <input
-        type="button"
-        value="Connettiti"
-        @click="connectToQuestionDevice"
-        class="p-2 mt-5 rounded bg-white text-black font-bold cursor-pointer uppercase"
-      />
-    </div>
+  <div v-if="!isConnected" class="flex flex-col items-center">
+    <Text>
+      Ora devi inserire il <span class="font-semibold">codice</span> che ti viene mostrato sul secondo dispositvo
+    </Text>
+    <input
+      type="number"
+      placeholder="Inserisci il codice a 5 cifre"
+      v-model="questionDevice"
+      class="leading-[3.25rem] w-full font-montserrat text-center text-[16px] font-medium rounded-xl bg-[#605d66] text-[#cac4d0] mt-14" />
+    <Bottom>
+      <BottomButton @click="connectToQuestionDevice">
+        Connettiti
+      </BottomButton>
+    </Bottom>
   </div>
   <div v-else class="flex flex-col mt-4 justify-center items-center w-full">
     <span class="text-center">Step 3: Gioca!</span>

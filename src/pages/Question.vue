@@ -3,6 +3,7 @@ import Peer, { DataConnection } from "peerjs";
 import { computed, ref, watch } from "vue";
 import words from "@/assets/words.json";
 import { POSITION, useToast } from "vue-toastification";
+import Text from "@/components/Text.vue";
 
 const toast = useToast();
 const wordIndex = ref(-1);
@@ -94,9 +95,11 @@ function stopTimer(passo: boolean = false) {
 
 <template>
   <div v-if="!isConnected" class="mt-4 justify-center">
-    <span class="text-center">Step 2: Ora inserisci questo codice sul secondo dispositvo.</span>
+    <Text>
+      Ora inserisci questo codice sul secondo dispositivo
+    </Text>
     <div class="flex mt-4 items-center justify-center">
-      <span class="font-bold mr-1 p-2 rounded bg-green-600 text-xl">{{ code }}</span>
+      <span class="leading-[3.5rem] w-full font-montserrat text-center text-[20px] font-medium rounded-xl bg-[#00dd9b] text-black mt-14">{{ code }}</span>
     </div>
   </div>
   <div v-else class="flex flex-col mt-4 justify-center items-center w-full">
