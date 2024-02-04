@@ -6,6 +6,7 @@ import type { ToastID } from "vue-toastification/dist/types/types";
 import Text from "@/components/Text.vue";
 import Bottom from "@/components/bottom/Bottom.vue";
 import BottomButton from "@/components/bottom/BottomButton.vue";
+import AnswerButton from "@/components/AnswerButton.vue";
 
 const questionDevice = ref("");
 const pause = ref(false);
@@ -24,7 +25,14 @@ const myself = ref(
     config: {
       iceServers: [
         { urls: "stun:stun.l.google.com:19302" },
-        { urls: ["turn:eu-0.turn.peerjs.com:3478", "turn:us-0.turn.peerjs.com:3478"], username: "peerjs", credential: "peerjsp" },
+        {
+          urls: [
+            "turn:eu-0.turn.peerjs.com:3478",
+            "turn:us-0.turn.peerjs.com:3478",
+          ],
+          username: "peerjs",
+          credential: "peerjsp",
+        },
       ],
       sdpSemantics: "unified-plan",
     },
@@ -33,7 +41,9 @@ const myself = ref(
 
 function connectToQuestionDevice() {
   // @ts-ignore
-  otherDevice.value = myself.value.connect(__APP_ID__ + "-" + questionDevice.value);
+  otherDevice.value = myself.value.connect(
+    __APP_ID__ + "-" + questionDevice.value,
+  );
   otherDevice.value!.on("open", () => {
     otherDevice.value!.send({ status: "connected" });
     otherDevice.value!.on("data", (data: any) => {
@@ -103,30 +113,31 @@ function wrong() {
 </script>
 
 <template>
-  <div v-if="!isConnected" class="flex flex-col items-center">
+  <div v-if="isConnected" class="flex flex-col items-center">
     <Text>
-      Ora devi inserire il <span class="font-semibold">codice</span> che ti viene mostrato sul secondo dispositvo
+      Ora devi inserire il <span class="font-semibold">codice</span> che ti
+      viene mostrato sul secondo dispositvo
     </Text>
     <input
       type="number"
       placeholder="Inserisci il codice a 5 cifre"
       v-model="questionDevice"
-      class="leading-[3.25rem] w-full font-montserrat text-center text-[16px] font-medium rounded-xl bg-[#605d66] text-[#cac4d0] mt-14" />
+      class="leading-[3.25rem] w-full font-montserrat text-center text-[16px] font-medium rounded-xl bg-[#605d66] text-[#cac4d0] mt-14"
+    />
     <Bottom>
-      <BottomButton @click="connectToQuestionDevice">
-        Connettiti
-      </BottomButton>
+      <BottomButton @click="connectToQuestionDevice"> Connettiti </BottomButton>
     </Bottom>
   </div>
   <div v-else class="flex flex-col mt-4 justify-center items-center w-full">
     <span class="text-center">Step 3: Gioca!</span>
-    <button
-      @click="wantToAnswer"
-      class="m-8 w-52 aspect-square bg-red-600 rounded-full flex justify-center items-center text-xl font-bold uppercase disabled:opacity-20"
-      :disabled="wait || pause"
-    >
-      Rispondi
-    </button>
+    <!--    <button-->
+    <!--      @click="wantToAnswer"-->
+    <!--      class="m-8 w-52 aspect-square bg-red-600 rounded-full flex justify-center items-center text-xl font-bold uppercase disabled:opacity-20"-->
+    <!--      :disabled="wait || pause"-->
+    <!--    >-->
+    <!--      Rispondi-->
+    <!--    </button>-->
+    <AnswerButton />
     <div class="mt-4 flex">
       <div class="flex-1 w-full flex justify-start">
         <button
@@ -147,7 +158,9 @@ function wrong() {
         </button>
       </div>
     </div>
-    <span class="flex-1 text-sm uppercase font-bold flex flex-col items-center justify-center mt-3">
+    <span
+      class="flex-1 text-sm uppercase font-bold flex flex-col items-center justify-center mt-3"
+    >
       Indovinate
       <span id="guessedCount" class="text-xl">
         {{ guessedCount }}

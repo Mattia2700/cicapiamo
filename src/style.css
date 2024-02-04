@@ -9,13 +9,13 @@
   }
   @font-face {
     font-family: "Montserrat";
-    src: url("@/assets/Montserrat-Black.ttf") format("truetype");
-    font-weight: 900;
+    src: url("@/assets/Montserrat-Regular.ttf") format("truetype");
+    font-weight: 400;
   }
   @font-face {
     font-family: "Montserrat";
-    src: url("@/assets/Montserrat-Regular.ttf") format("truetype");
-    font-weight: 400;
+    src: url("@/assets/Montserrat-Medium.ttf") format("truetype");
+    font-weight: 500;
   }
   @font-face {
     font-family: "Montserrat";
@@ -24,8 +24,13 @@
   }
   @font-face {
     font-family: "Montserrat";
-    src: url("@/assets/Montserrat-Medium.ttf") format("truetype");
-    font-weight: 500;
+    src: url("@/assets/Montserrat-ExtraBold.ttf") format("truetype");
+    font-weight: 800;
+  }
+  @font-face {
+    font-family: "Montserrat";
+    src: url("@/assets/Montserrat-Black.ttf") format("truetype");
+    font-weight: 900;
   }
 }
 
