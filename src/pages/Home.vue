@@ -3,18 +3,18 @@ import { useRouter } from "vue-router";
 import Text from "@/components/Text.vue";
 import Bottom from "@/components/bottom/Bottom.vue";
 import BottomButton from "@/components/bottom/BottomButton.vue";
-import { onMounted } from "vue";
 
 const props = defineProps<{
   myself: any;
   otherDevice: any;
+  code: string;
 }>();
 
 // const target = ref("");
 const router = useRouter();
 
 function redirectToQuestion() {
-  router.push("/question");
+  router.push("/question-request");
 }
 
 function redirectToAnswer() {

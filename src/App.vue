@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import StepRow from "@/components/StepRow.vue";
 import { RouterView, useRouter } from "vue-router";
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, ref } from "vue";
 import Peer, { DataConnection } from "peerjs";
 //import Pwa from "@/components/Pwa.vue";
 
@@ -36,7 +36,7 @@ const currentRoute = computed(() => {
   if (router.currentRoute.value.name === "home") {
     return 1;
   } else if (
-    router.currentRoute.value.name === "question" ||
+    router.currentRoute.value.name === "question-request" ||
     router.currentRoute.value.name === "answer-request"
   ) {
     return 2;
@@ -63,6 +63,7 @@ const router = useRouter();
           :is="Component"
           :myself="myself"
           :otherDevice="otherDevice"
+          :code="code"
           @update="updateOtherDevice($event)"
         />
       </div>

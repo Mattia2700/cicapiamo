@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, UnwrapRef, watch } from "vue";
 import Text from "@/components/Text.vue";
 import Bottom from "@/components/bottom/Bottom.vue";
 import BottomButton from "@/components/bottom/BottomButton.vue";
@@ -9,9 +9,10 @@ import Peer, { DataConnection } from "peerjs";
 const props = defineProps<{
   myself: Peer;
   otherDevice: DataConnection | null;
+  code: string;
 }>();
 const emit = defineEmits<{
-  (event: "update", value: DataConnection): void;
+  (event: "update", value: UnwrapRef<DataConnection | null>): void;
 }>();
 
 const isConnected = ref(false);
@@ -20,6 +21,7 @@ const emitValue = ref<DataConnection | null>(null);
 
 function connectToQuestionDevice() {
   emitValue.value = props.myself.connect(
+    // @ts-ignore
     __APP_ID__ + "-" + questionDevice.value,
   );
   emitValue.value!.on("open", () => {
