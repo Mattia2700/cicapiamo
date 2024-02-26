@@ -1,1 +1,0 @@
-import{_ as t}from"./_plugin-vue_export-helper-x3n3nnut.js";import{c as o,j as r,b as n}from"./index-ixvfb0he.js";const s={},a={class:"mt-[1.5em] text-left font-montserrat font-normal leading-5 text-[16px] pl-2 border-l-4 border-l-[#e600fa] rounded-l-sm"};function c(e,l){return n(),o("div",a,[r(e.$slots,"default")])}const m=t(s,[["render",c]]);export{m as T};
