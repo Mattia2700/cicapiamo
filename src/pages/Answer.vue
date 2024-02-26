@@ -3,10 +3,10 @@ import { onMounted, ref } from "vue";
 import { POSITION, useToast } from "vue-toastification";
 import type { ToastID } from "vue-toastification/dist/types/types";
 import AnswerButton from "@/components/AnswerButton.vue";
+import { DataConnection } from "peerjs";
 
 const props = defineProps<{
-  myself: any;
-  otherDevice: any;
+  otherDevice: DataConnection | null;
 }>();
 
 const pause = ref(false);
@@ -17,7 +17,7 @@ const guessedCount = ref(0);
 const toast = useToast();
 
 onMounted(() => {
-  props.otherDevice.on("data", (data: any) => {
+  props.otherDevice!.on("data", (data: any) => {
     if (data.command === "start") {
       wait.value = false;
     } else if (data.command === "passo") {
@@ -30,7 +30,7 @@ onMounted(() => {
 });
 
 function wantToAnswer() {
-  props.otherDevice.send({ command: "answer" });
+  props.otherDevice!.send({ command: "answer" });
   pause.value = true;
   timeout.value = setTimeout(() => {
     if (guessedCount.value > 0) {
@@ -38,8 +38,8 @@ function wantToAnswer() {
     }
     pause.value = !pause.value;
     wait.value = true;
-    props.otherDevice.send({ command: "continue" });
-    props.otherDevice.send({ score: guessedCount.value });
+    props.otherDevice!.send({ command: "continue" });
+    props.otherDevice!.send({ score: guessedCount.value });
   }, 10000);
   toastId.value = toast.info("Rispondi!", {
     position: POSITION.BOTTOM_CENTER,
@@ -60,8 +60,8 @@ function correct() {
   guessedCount.value++;
   pause.value = false;
   wait.value = true;
-  props.otherDevice.send({ command: "continue" });
-  props.otherDevice.send({ score: guessedCount.value });
+  props.otherDevice!.send({ command: "continue" });
+  props.otherDevice!.send({ score: guessedCount.value });
 }
 
 function wrong() {
@@ -74,8 +74,8 @@ function wrong() {
   }
   pause.value = false;
   wait.value = true;
-  props.otherDevice.send({ command: "continue" });
-  props.otherDevice.send({ score: guessedCount.value });
+  props.otherDevice!.send({ command: "continue" });
+  props.otherDevice!.send({ score: guessedCount.value });
 }
 </script>
 

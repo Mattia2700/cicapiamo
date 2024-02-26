@@ -9,28 +9,9 @@ import Peer, { DataConnection } from "peerjs";
 //  return window.matchMedia("(display-mode: standalone)").matches;
 //});
 
-const code = String(Math.round(Math.random() * (99999 - 10000) + 1));
-let otherDevice = ref<DataConnection | null>(null);
-const myself = ref(
-  // @ts-ignore
-  new Peer(__APP_ID__ + "-" + code, {
-    debug: 3,
-    config: {
-      iceServers: [
-        { urls: "stun:stun.l.google.com:19302" },
-        {
-          urls: [
-            "turn:eu-0.turn.peerjs.com:3478",
-            "turn:us-0.turn.peerjs.com:3478",
-          ],
-          username: "peerjs",
-          credential: "peerjsp",
-        },
-      ],
-      sdpSemantics: "unified-plan",
-    },
-  }),
-);
+const code = ref(String(Math.round(Math.random() * (99999 - 10000) + 1)));
+const otherDevice = ref<DataConnection | null>(null);
+const myself = ref<Peer | null>(null);
 
 const currentRoute = computed(() => {
   if (router.currentRoute.value.name === "home") {
@@ -46,8 +27,18 @@ const currentRoute = computed(() => {
 });
 
 function updateOtherDevice(value: DataConnection) {
-  console.log(value);
+  console.log("other" + value);
   otherDevice.value = value;
+}
+
+function updateMe(value: Peer) {
+  console.log("me" + value);
+  myself.value = value;
+}
+
+function updateCode(value: string) {
+  console.log("code" + value);
+  code.value = value;
 }
 
 //const playAnyway = ref(false);
@@ -64,7 +55,9 @@ const router = useRouter();
           :myself="myself"
           :otherDevice="otherDevice"
           :code="code"
-          @update="updateOtherDevice($event)"
+          @updateOther="updateOtherDevice($event)"
+          @updateCode="updateCode($event)"
+          @updateMe="updateMe($event)"
         />
       </div>
       <!--<div v-else>-->

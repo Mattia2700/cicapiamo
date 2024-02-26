@@ -7,12 +7,10 @@ import router from "@/router";
 import Peer, { DataConnection } from "peerjs";
 
 const props = defineProps<{
-  myself: Peer;
-  otherDevice: DataConnection | null;
-  code: string;
+  myself: Peer | null;
 }>();
 const emit = defineEmits<{
-  (event: "update", value: UnwrapRef<DataConnection | null>): void;
+  (event: "updateOther", value: UnwrapRef<DataConnection | null>): void;
 }>();
 
 const isConnected = ref(false);
@@ -20,7 +18,7 @@ const questionDevice = ref("");
 const emitValue = ref<DataConnection | null>(null);
 
 function connectToQuestionDevice() {
-  emitValue.value = props.myself.connect(
+  emitValue.value = props.myself!.connect(
     // @ts-ignore
     __APP_ID__ + "-" + questionDevice.value,
   );
@@ -39,7 +37,7 @@ watch(
   () => isConnected.value,
   (newValue) => {
     if (newValue) {
-      emit("update", emitValue.value);
+      emit("updateOther", emitValue.value);
       router.push("/answer");
     }
   },

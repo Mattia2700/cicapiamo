@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import Peer, { DataConnection } from "peerjs";
+import { DataConnection } from "peerjs";
 import { computed, onMounted, ref, watch } from "vue";
 import words from "@/assets/words.json";
 import { POSITION, useToast } from "vue-toastification";
 
 const props = defineProps<{
-  myself: Peer;
   otherDevice: DataConnection | null;
-  code: string;
 }>();
 
 const toast = useToast();

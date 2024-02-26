@@ -5,12 +5,11 @@ import Text from "@/components/Text.vue";
 import router from "@/router";
 
 const props = defineProps<{
-  myself: Peer;
-  otherDevice: DataConnection | null;
+  myself: Peer | null;
   code: string;
 }>();
 const emit = defineEmits<{
-  (event: "update", value: UnwrapRef<DataConnection>): void;
+  (event: "updateOther", value: UnwrapRef<DataConnection>): void;
 }>();
 
 const emitValue = ref<DataConnection | null>(null);
@@ -19,13 +18,13 @@ watch(
   () => emitValue.value,
   (newValue) => {
     if (newValue !== null) {
-      emit("update", newValue);
+      emit("updateOther", newValue);
     }
   },
 );
 
 onMounted(() => {
-  props.myself.on("connection", (conn) => {
+  props.myself!.on("connection", (conn) => {
     emitValue.value = conn;
     emitValue.value.on("data", (data: any) => {
       if (data.status === "connected") {
