@@ -3,6 +3,12 @@ import { useRouter } from "vue-router";
 import Text from "@/components/Text.vue";
 import Bottom from "@/components/bottom/Bottom.vue";
 import BottomButton from "@/components/bottom/BottomButton.vue";
+import { onMounted } from "vue";
+
+const props = defineProps<{
+  myself: any;
+  otherDevice: any;
+}>();
 
 // const target = ref("");
 const router = useRouter();
@@ -12,7 +18,9 @@ function redirectToQuestion() {
 }
 
 function redirectToAnswer() {
-  router.push("/answer");
+  console.log(props.myself._id);
+  props.myself._id = "12345";
+  router.push("/answer-request");
 }
 </script>
 
@@ -24,13 +32,9 @@ function redirectToAnswer() {
       <span class="font-semibold">fare le domande</span>
     </Text>
     <Bottom>
-      <BottomButton @click="redirectToAnswer">
-        Rispondere
-      </BottomButton>
-      <div class="my-6"/>
-      <BottomButton @click="redirectToQuestion">
-        Fare Domande
-      </BottomButton>
+      <BottomButton @click="redirectToAnswer"> Rispondere </BottomButton>
+      <div class="my-6" />
+      <BottomButton @click="redirectToQuestion"> Fare Domande </BottomButton>
     </Bottom>
   </div>
 </template>
