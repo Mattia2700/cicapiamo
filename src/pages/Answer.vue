@@ -30,26 +30,28 @@ onMounted(() => {
 });
 
 function wantToAnswer() {
-  props.otherDevice!.send({ command: "answer" });
-  pause.value = true;
-  timeout.value = setTimeout(() => {
-    if (guessedCount.value > 0) {
-      guessedCount.value--;
-    }
-    pause.value = !pause.value;
-    wait.value = true;
-    props.otherDevice!.send({ command: "continue" });
-    props.otherDevice!.send({ score: guessedCount.value });
-  }, 10000);
-  toastId.value = toast.info("Rispondi!", {
-    position: POSITION.BOTTOM_CENTER,
-    timeout: 10000,
-    closeOnClick: false,
-    pauseOnFocusLoss: false,
-    pauseOnHover: false,
-    draggable: false,
-    closeButton: false,
-  });
+  if (!(wait.value || pause.value)) {
+    props.otherDevice!.send({ command: "answer" });
+    pause.value = true;
+    timeout.value = setTimeout(() => {
+      if (guessedCount.value > 0) {
+        guessedCount.value--;
+      }
+      pause.value = !pause.value;
+      wait.value = true;
+      props.otherDevice!.send({ command: "continue" });
+      props.otherDevice!.send({ score: guessedCount.value });
+    }, 10000);
+    toastId.value = toast.info("Rispondi!", {
+      position: POSITION.BOTTOM_CENTER,
+      timeout: 10000,
+      closeOnClick: false,
+      pauseOnFocusLoss: false,
+      pauseOnHover: false,
+      draggable: false,
+      closeButton: false,
+    });
+  }
 }
 
 function correct() {
