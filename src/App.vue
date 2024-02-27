@@ -3,12 +3,13 @@ import StepRow from "@/components/StepRow.vue";
 import { RouterView, useRouter } from "vue-router";
 import { computed, ref } from "vue";
 import Peer, { DataConnection } from "peerjs";
-//import Pwa from "@/components/Pwa.vue";
+import Pwa from "@/components/Pwa.vue";
 
-//const isPWA = computed(() => {
-//  return window.matchMedia("(display-mode: standalone)").matches;
-//});
+const isPWA = computed(() => {
+  return window.matchMedia("(display-mode: standalone)").matches;
+});
 
+const playAnyway = ref(false);
 const code = ref(String(Math.round(Math.random() * (99999 - 10000) + 1)));
 const otherDevice = ref<DataConnection | null>(null);
 const myself = ref<Peer | null>(null);
@@ -48,7 +49,7 @@ const router = useRouter();
   <RouterView v-slot="{ Component }">
     <div class="mt-4 p-1 px-[1.5rem] text-white max-w-lg m-auto flex flex-col">
       <img class="flex" src="@/assets/it-title.svg" alt="Ci Capiamo?" />
-      <div>
+      <div v-if="isPWA || playAnyway">
         <StepRow :current_idx="currentRoute" />
         <Component
           :is="Component"
@@ -60,9 +61,9 @@ const router = useRouter();
           @updateMe="updateMe($event)"
         />
       </div>
-      <!--<div v-else>-->
-      <!--<Pwa @play="playAnyway = true"/>-->
-      <!--</div>-->
+      <div v-else>
+        <Pwa @play="playAnyway = true" />
+      </div>
     </div>
   </RouterView>
 </template>
