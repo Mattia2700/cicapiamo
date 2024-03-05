@@ -14,15 +14,18 @@ const otherDevice = ref<DataConnection | null>(null);
 const myself = ref<Peer | null>(null);
 
 const currentRoute = computed(() => {
-  if (router.currentRoute.value.name === "home") {
-    return 1;
+  if (
+    router.currentRoute.value.name === "question" ||
+    router.currentRoute.value.name === "answer"
+  ) {
+    return 3;
   } else if (
     router.currentRoute.value.name === "question-request" ||
     router.currentRoute.value.name === "answer-request"
   ) {
     return 2;
   } else {
-    return 3;
+    return 1;
   }
 });
 
@@ -46,7 +49,10 @@ const router = useRouter();
 </script>
 <template>
   <RouterView v-slot="{ Component }">
-    <div class="mt-4 p-1 px-[1.5rem] text-white max-w-lg m-auto flex flex-col">
+    <div
+      id="title"
+      class="mt-4 p-1 px-[1.5rem] text-white max-w-lg m-auto flex flex-col"
+    >
       <img class="flex" src="@/assets/it-title.svg" alt="Ci Capiamo?" />
       <div>
         <StepRow :current_idx="currentRoute" />
