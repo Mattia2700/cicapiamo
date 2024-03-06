@@ -4,6 +4,9 @@ import { POSITION, useToast } from "vue-toastification";
 import type { ToastID } from "vue-toastification/dist/types/types";
 import AnswerButton from "@/components/AnswerButton.vue";
 import { DataConnection } from "peerjs";
+import Game from "@/components/bottom/Game.vue";
+import Bottom from "@/components/bottom/Bottom.vue";
+import Text from "@/components/Text.vue";
 
 const props = defineProps<{
   otherDevice: DataConnection | null;
@@ -83,36 +86,39 @@ function wrong() {
 
 <template>
   <div class="flex flex-col mt-4 justify-center items-center w-full">
-    <span class="text-center">Step 3: Gioca!</span>
+    <Text>Step 3: Gioca!</Text>
     <AnswerButton :disabled="wait || pause" @click="wantToAnswer" />
-    <div class="mt-4 flex">
-      <div class="flex-1 w-full flex justify-start">
-        <button
-          @click="correct"
-          class="mr-2 w-fit p-1 bg-green-600 uppercase font-bold rounded disabled:opacity-20 h-12"
-          :disabled="wait || !pause"
-        >
-          Corretto
-        </button>
-      </div>
-      <div class="flex-1 flex justify-end">
-        <button
-          @click="wrong"
-          class="ml-2 w-fit p-1 bg-red-600 uppercase font-bold rounded disabled:opacity-20"
-          :disabled="wait || !pause"
-        >
-          Sbagliato
-        </button>
-      </div>
-    </div>
-    <span
-      class="flex-1 text-sm uppercase font-bold flex flex-col items-center justify-center mt-3"
-    >
-      Indovinate
-      <span id="guessedCount" class="text-xl">
-        {{ guessedCount }}
-      </span>
-    </span>
+    <Bottom>
+      <Game />
+    </Bottom>
+    <!--    <div class="mt-4 flex">-->
+    <!--      <div class="flex-1 w-full flex justify-start">-->
+    <!--        <button-->
+    <!--          @click="correct"-->
+    <!--          class="mr-2 w-fit p-1 bg-green-600 uppercase font-bold rounded disabled:opacity-20 h-12"-->
+    <!--          :disabled="wait || !pause"-->
+    <!--        >-->
+    <!--          Corretto-->
+    <!--        </button>-->
+    <!--      </div>-->
+    <!--      <div class="flex-1 flex justify-end">-->
+    <!--        <button-->
+    <!--          @click="wrong"-->
+    <!--          class="ml-2 w-fit p-1 bg-red-600 uppercase font-bold rounded disabled:opacity-20"-->
+    <!--          :disabled="wait || !pause"-->
+    <!--        >-->
+    <!--          Sbagliato-->
+    <!--        </button>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--    <span-->
+    <!--      class="flex-1 text-sm uppercase font-bold flex flex-col items-center justify-center mt-3"-->
+    <!--    >-->
+    <!--      Indovinate-->
+    <!--      <span id="guessedCount" class="text-xl">-->
+    <!--        {{ guessedCount }}-->
+    <!--      </span>-->
+    <!--    </span>-->
   </div>
 </template>
 

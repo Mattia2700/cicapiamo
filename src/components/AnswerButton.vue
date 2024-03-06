@@ -19,6 +19,15 @@ const props = defineProps({
 </template>
 
 <style scoped>
+img {
+  margin-top: 55px;
+}
+@media (max-height: 740px) {
+  img {
+    margin-top: 0;
+  }
+}
+
 img[alt="active"] {
   content: url("@/assets/active.png");
 }

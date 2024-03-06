@@ -51,7 +51,7 @@ const router = useRouter();
   <RouterView v-slot="{ Component }">
     <div
       id="title"
-      class="mt-4 p-1 px-[1.5rem] text-white max-w-lg m-auto flex flex-col"
+      class="p-1 px-[1.5rem] text-white max-w-lg m-auto flex flex-col"
     >
       <img class="flex" src="@/assets/it-title.svg" alt="Ci Capiamo?" />
       <div>
