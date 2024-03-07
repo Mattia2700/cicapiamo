@@ -5,9 +5,9 @@
   "type": "module",
   "homepage": "https://mattia2700.github.io/cicapiamo/",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
     "ionic:build": "npm run build",
     "ionic:serve": "vite dev --host",
     "predeploy": "npm run build",

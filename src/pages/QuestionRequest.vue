@@ -41,7 +41,7 @@ onMounted(() => {
     <Text> Ora inserisci questo codice sul secondo dispositivo </Text>
     <div class="flex mt-4 items-center justify-center">
       <span
-        class="leading-[3.5rem] w-full font-montserrat text-center text-[20px] font-medium rounded-xl bg-[#00dd9b] text-black mt-14"
+        class="leading-[3.5rem] w-full font-montserrat text-center text-[20px] font-medium rounded-xl bg-[#00dd9b] text-black mt-8"
         >{{ code }}</span
       >
     </div>

@@ -11,7 +11,7 @@ div {
   bottom: 3.5rem;
 }
 
-@media (max-height: 800px) {
+@media (max-height: 700px) {
   div {
     bottom: 1rem;
   }

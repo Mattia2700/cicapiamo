@@ -2,6 +2,16 @@
 import { onMounted, onUnmounted, ref } from "vue";
 import Point from "@/components/bottom/Point.vue";
 
+const props = defineProps<{
+  disabled: boolean;
+  score: number;
+}>();
+
+const emits = defineEmits<{
+  (correct: "correct"): void;
+  (wrong: "wrong"): void;
+}>();
+
 const width = ref();
 
 onMounted(() => {
@@ -28,16 +38,27 @@ function updateWidth() {
       class="flex justify-between bg-[#322f37] leading-[3.8125rem] rounded-xl"
       :style="{ width: width + 'px' }"
     >
-      <span class="ml-4 font-montserrat font-medium">Indovinate</span>
-      <span class="mr-4 font-montserrat font-medium">0</span>
+      <span class="ml-4 font-montserrat font-medium text-[16px]"
+        >Indovinate</span
+      >
+      <span class="mr-4 font-montserrat font-medium text-[24px]">{{
+        props.score
+      }}</span>
     </div>
     <div
       class="flex flex-row items-center mt-4 w-full"
       :style="{ width: width + 'px' }"
     >
-      <Point flavor="correct" disabled><p>Corretto</p></Point>
+      <Point
+        flavor="correct"
+        :disabled="props.disabled"
+        @click="emits('correct')"
+        ><p>Corretto</p></Point
+      >
       <span class="w-6" />
-      <Point flavor="wrong" disabled>Sbagliato</Point>
+      <Point flavor="wrong" :disabled="props.disabled" @click="emits('wrong')"
+        >Sbagliato</Point
+      >
     </div>
   </div>
 </template>

@@ -54,7 +54,7 @@ watch(
       type="number"
       placeholder="Inserisci il codice a 5 cifre"
       v-model="questionDevice"
-      class="leading-[3.25rem] w-full font-montserrat text-center text-[16px] font-medium rounded-xl bg-[#605d66] text-[#cac4d0] mt-14"
+      class="leading-[3.25rem] w-full font-montserrat text-center text-[16px] font-medium rounded-xl bg-[#605d66] text-[#cac4d0] mt-8"
     />
     <Bottom>
       <BottomButton @click="connectToQuestionDevice"> Connettiti </BottomButton>

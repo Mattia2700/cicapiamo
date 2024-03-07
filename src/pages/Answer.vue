@@ -85,11 +85,16 @@ function wrong() {
 </script>
 
 <template>
-  <div class="flex flex-col mt-4 justify-center items-center w-full">
-    <Text>Step 3: Gioca!</Text>
+  <div class="flex flex-col justify-center items-center w-full">
+    <Text>Gioca !</Text>
     <AnswerButton :disabled="wait || pause" @click="wantToAnswer" />
     <Bottom>
-      <Game />
+      <Game
+        :score="guessedCount"
+        :disabled="wait || !pause"
+        @correct="correct"
+        @wrong="wrong"
+      />
     </Bottom>
     <!--    <div class="mt-4 flex">-->
     <!--      <div class="flex-1 w-full flex justify-start">-->

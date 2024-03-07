@@ -5,14 +5,15 @@ const props = defineProps({
 </script>
 
 <template>
+  <!-- TODO: check why click not always detected on mobile -->
   <img
     src="@/assets/locked.png"
-    class="max-h-[230px] pt-[12px] pr-[6px]"
+    class="max-h-[230px] pr-[6px]"
     alt="disabled"
     v-if="props.disabled"
   />
   <img
-    class="max-h-[230px] active:pt-[20px] active:pr-[3px]"
+    class="max-h-[230px] active:pt-[8px] active:pr-[3px]"
     alt="active"
     v-else
   />
