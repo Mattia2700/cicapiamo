@@ -1,1 +1,0 @@
-import{c as n,k as r,b as a}from"./index-RxW6NONT.js";const _=(e,t)=>{const o=e.__vccOpts||e;for(const[c,s]of t)o[c]=s;return o},f={},l={class:"fixed flex flex-col items-center justify-center w-full"};function d(e,t){return a(),n("div",l,[r(e.$slots,"default",{},void 0,!0)])}const u=_(f,[["render",d],["__scopeId","data-v-e24e396e"]]);export{u as B,_};
