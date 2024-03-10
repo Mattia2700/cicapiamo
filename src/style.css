@@ -43,6 +43,71 @@
   flex-direction: column;
 }
 
+.Vue-Toastification__toast {
+  margin-bottom: 50% !important;
+  min-height: 91px !important;
+  max-height: 91px !important;
+  overflow: visible !important;
+}
+
+.Vue-Toastification__toast--info {
+  min-width: 100% !important;
+  max-width: 100% !important;
+  background-color: #1d1a22 !important;
+}
+
+.Vue-Toastification__toast-body {
+  position: relative;
+  bottom: 60px;
+  height: 81px;
+  content: url("@/assets/answer.svg");
+}
+
+.Vue-Toastification__progress-bar {
+  left: 5% !important;
+  width: 90% !important;
+  bottom: 21px !important;
+  background-color: #00bdf9 !important;
+}
+
+.slideIn {
+  animation-name: slideInLeft;
+  animation-duration: 800ms;
+  animation-fill-mode: both;
+}
+
+.slideOut {
+  animation-name: slideOutRight;
+  animation-duration: 800ms;
+  animation-fill-mode: both;
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-1000px);
+    /*transform-origin: 100% 50%;*/
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    /*transform-origin: 50% 50%;*/
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0);
+    /*transform-origin: 50% 50%;*/
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(1000px);
+    /*transform-origin: 0% 50%;*/
+    opacity: 0;
+  }
+}
+
 /*:root {*/
 /*  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;*/
 /*  line-height: 1.5;*/

@@ -22,6 +22,7 @@ const toast = useToast();
 onMounted(() => {
   props.otherDevice!.on("data", (data: any) => {
     if (data.command === "start") {
+      guessedCount.value = 0;
       wait.value = false;
     } else if (data.command === "passo") {
       pause.value = false;
@@ -47,6 +48,7 @@ function wantToAnswer() {
     }, 10000);
     toastId.value = toast.info("Rispondi!", {
       position: POSITION.BOTTOM_CENTER,
+      icon: false,
       timeout: 10000,
       closeOnClick: false,
       pauseOnFocusLoss: false,
@@ -96,34 +98,6 @@ function wrong() {
         @wrong="wrong"
       />
     </Bottom>
-    <!--    <div class="mt-4 flex">-->
-    <!--      <div class="flex-1 w-full flex justify-start">-->
-    <!--        <button-->
-    <!--          @click="correct"-->
-    <!--          class="mr-2 w-fit p-1 bg-green-600 uppercase font-bold rounded disabled:opacity-20 h-12"-->
-    <!--          :disabled="wait || !pause"-->
-    <!--        >-->
-    <!--          Corretto-->
-    <!--        </button>-->
-    <!--      </div>-->
-    <!--      <div class="flex-1 flex justify-end">-->
-    <!--        <button-->
-    <!--          @click="wrong"-->
-    <!--          class="ml-2 w-fit p-1 bg-red-600 uppercase font-bold rounded disabled:opacity-20"-->
-    <!--          :disabled="wait || !pause"-->
-    <!--        >-->
-    <!--          Sbagliato-->
-    <!--        </button>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <span-->
-    <!--      class="flex-1 text-sm uppercase font-bold flex flex-col items-center justify-center mt-3"-->
-    <!--    >-->
-    <!--      Indovinate-->
-    <!--      <span id="guessedCount" class="text-xl">-->
-    <!--        {{ guessedCount }}-->
-    <!--      </span>-->
-    <!--    </span>-->
   </div>
 </template>
 

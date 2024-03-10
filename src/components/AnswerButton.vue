@@ -8,15 +8,11 @@ const props = defineProps({
   <!-- TODO: check why click not always detected on mobile -->
   <img
     src="@/assets/locked.png"
-    class="max-h-[230px] pr-[6px]"
+    class="max-h-[230px] mr-[6px]"
     alt="disabled"
     v-if="props.disabled"
   />
-  <img
-    class="max-h-[230px] active:pt-[8px] active:pr-[3px]"
-    alt="active"
-    v-else
-  />
+  <img class="max-h-[230px]" alt="active" v-else />
 </template>
 
 <style scoped>
@@ -30,10 +26,13 @@ img {
 }
 
 img[alt="active"] {
+  margin-top: 44px;
   content: url("@/assets/active.png");
 }
 
 img[alt="active"]:active {
+  margin-top: 64px;
+  margin-right: 2px;
   content: url("@/assets/pressed.png");
 }
 </style>

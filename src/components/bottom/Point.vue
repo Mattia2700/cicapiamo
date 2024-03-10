@@ -25,6 +25,7 @@ const emit = defineEmits<{
             backgroundColor: props.flavor === 'correct' ? '#00dd9b' : '#e93173',
           }
     "
+    :disabled="props.disabled"
     @click="emit('click')"
   >
     <slot />

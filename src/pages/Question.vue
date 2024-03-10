@@ -40,6 +40,7 @@ onMounted(() => {
       running.value = false;
     } else if ("score" in data) {
       guessedCount.value = data.score;
+      pause.value = true;
     }
   });
 });
